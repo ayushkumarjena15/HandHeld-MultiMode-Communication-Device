@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { 
-  ShieldAlert, Radio, Smartphone, Satellite, 
+  Shield, Radio, Smartphone, Satellite, 
   Mountain, Gauge, Compass, Thermometer, Battery, 
-  Signal, Info, AlertTriangle, AlertCircle 
+  Signal, Info, AlertTriangle, AlertCircle, Wifi, Sparkles, Clock
 } from 'lucide-react';
 import { MapContainer, TileLayer, Marker, Popup, ZoomControl } from 'react-leaflet';
 import L from 'leaflet';
@@ -115,22 +115,26 @@ function App() {
       {/* HEADER */}
       <header className="header">
         <div className="header-left">
-          <ShieldAlert className="shield-icon" strokeWidth={1.5} />
+          <div className="shield-container">
+            <Shield className="shield-icon" strokeWidth={2} />
+          </div>
           <div className="title-container">
             <h1 className="main-title">DHRISHTI DASHBOARD</h1>
-            <span className="subtitle">Margdarshak Command Center</span>
+            <span className="subtitle">MARGDARSHAK COMMAND CENTER</span>
           </div>
         </div>
 
         <div className="header-right">
           <div className="status-indicator">
-            <Radio className="wifi-icon" size={16} />
+            <Wifi className="wifi-icon" strokeWidth={2.5} />
             <span className="label">LINK:</span>
             <span className="value">ACTIVE</span>
           </div>
-          <div className="navic">NAVIC ✨</div>
+          <div className="navic">
+            NAVIC <Sparkles size={14} fill="currentColor" />
+          </div>
           <div className="time-display">
-            <span>🕒</span>
+            <Clock size={14} strokeWidth={2} />
             <span>{formatTime(currentTime)}</span>
           </div>
         </div>
