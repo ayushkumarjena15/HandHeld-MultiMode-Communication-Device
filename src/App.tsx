@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { 
-  ShieldAlert, Radio, Smartphone, Satellite, MapPin, 
+  ShieldAlert, Radio, Smartphone, Satellite, 
   Mountain, Gauge, Compass, Thermometer, Battery, 
   Signal, Info, AlertTriangle, AlertCircle 
 } from 'lucide-react';
