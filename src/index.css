@@ -1,7 +1,7 @@
 :root {
   --bg-main: #0c1012;
-  --bg-panel: #111518;
-  --bg-panel-hover: #161c20;
+  --bg-panel: rgba(17, 21, 24, 0.7);
+  --bg-panel-hover: rgba(22, 28, 32, 0.8);
   --border-color: #242c30;
   --text-primary: #e6f0f0;
   --text-secondary: #71888a;

@@ -111,8 +111,38 @@ function App() {
   const sosCount = UNITS.filter(u => u.status === 'sos').length;
 
   return (
-    <div className="app">
-      {/* HEADER */}
+    <>
+      <div className="map-background">
+        <MapContainer 
+          center={[19.18, 72.85]} 
+          zoom={11} 
+          style={{ height: '100vh', width: '100vw', backgroundColor: '#0c1012' }}
+          zoomControl={false}
+        >
+          <TileLayer
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+          />
+          <ZoomControl position="bottomright" />
+          
+          {UNITS.map(unit => (
+            <Marker 
+              key={unit.id} 
+              position={unit.coords}
+              icon={createCustomIcon(unit.status)}
+              eventHandlers={{ click: () => setSelectedUnitId(unit.id) }}
+            >
+              <Popup className="dark-popup">
+                <strong>{unit.name}</strong><br/>
+                {unit.callsign}
+              </Popup>
+            </Marker>
+          ))}
+        </MapContainer>
+      </div>
+
+      <div className="app">
+        {/* HEADER */}
       <header className="header">
         <div className="header-left">
           <div className="shield-container">
@@ -172,7 +202,7 @@ function App() {
         </div>
 
         {/* CENTER PANEL */}
-        <div className="panel center-panel">
+        <div className="center-panel">
             <div className="map-overlay-stats">
               <div className="stat-segment">
                 <span className="label">UNITS DEPLOYED:</span>
@@ -186,36 +216,6 @@ function App() {
                 <span className="label">SOS:</span>
                 <span className="val-sos">{sosCount}</span>
               </div>
-            </div>
-
-            <div className="map-container">
-              <MapContainer 
-                center={[19.18, 72.85]} 
-                zoom={11} 
-                style={{ height: '100%', width: '100%', backgroundColor: '#0c1012' }}
-                zoomControl={false}
-              >
-                {/* A dark themed map tile layer (e.g., CartoDB Dark Matter) */}
-                <TileLayer
-                  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-                />
-                <ZoomControl position="bottomright" />
-                
-                {UNITS.map(unit => (
-                  <Marker 
-                    key={unit.id} 
-                    position={unit.coords}
-                    icon={createCustomIcon(unit.status)}
-                    eventHandlers={{ click: () => setSelectedUnitId(unit.id) }}
-                  >
-                    <Popup className="dark-popup">
-                      <strong>{unit.name}</strong><br/>
-                      {unit.callsign}
-                    </Popup>
-                  </Marker>
-                ))}
-              </MapContainer>
             </div>
         </div>
 
@@ -304,7 +304,8 @@ function App() {
         </div>
 
       </main>
-    </div>
+      </div>
+    </>
   );
 }
 
