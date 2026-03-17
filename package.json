@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/rajdhani": "^5.2.7",
+    "@fontsource/share-tech-mono": "^5.2.7",
     "@types/leaflet": "^1.9.21",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.577.0",
